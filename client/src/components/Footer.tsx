@@ -1,7 +1,10 @@
 import { Link } from "wouter";
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { contactInfo } from "@/lib/mockData";
+import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Linkedin, Youtube } from "lucide-react";
 
 export default function Footer() {
+  const { socials, email, phone, address } = contactInfo;
+
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
@@ -36,15 +39,15 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-white/60">
                 <MapPin className="h-5 w-5 text-primary shrink-0" />
-                <span>123 Industrial Area, Phase 2, New Delhi, India 110020</span>
+                <span>{address}</span>
               </li>
               <li className="flex items-center gap-3 text-white/60">
                 <Phone className="h-5 w-5 text-primary shrink-0" />
-                <span>+91 98765 43210</span>
+                <span>+91 {phone}</span>
               </li>
               <li className="flex items-center gap-3 text-white/60">
                 <Mail className="h-5 w-5 text-primary shrink-0" />
-                <span>info@shuklaupvc.com</span>
+                <span>{email}</span>
               </li>
             </ul>
           </div>
@@ -52,15 +55,21 @@ export default function Footer() {
           {/* Newsletter / Social */}
           <div>
             <h3 className="text-lg font-bold mb-6 font-serif">Connect</h3>
-            <div className="flex gap-4 mb-8">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+            <div className="flex flex-wrap gap-4 mb-8">
+              <a href={socials.instagram.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+              <a href={socials.facebook.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+              <a href={socials.twitter.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
                 <Twitter className="h-5 w-5" />
+              </a>
+              <a href={socials.linkedin.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a href={socials.youtube.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Youtube className="h-5 w-5" />
               </a>
             </div>
             <p className="text-sm text-white/40">

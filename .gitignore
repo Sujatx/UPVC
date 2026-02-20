@@ -5,6 +5,7 @@ node_modules/
 
 # Production
 dist/
+build/
 
 # Env & Secrets
 .env
@@ -33,12 +34,7 @@ pnpm-debug.log*
 
 # Local/Temporary
 .local/
-server/public/
 vite.config.ts.*
 *.tar.gz
 
-# Database
-drizzle/
-*.db
-*.sqlite
 GEMINI.md

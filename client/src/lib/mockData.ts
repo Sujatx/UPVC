@@ -1,4 +1,18 @@
-import { LucideIcon, DoorOpen, LayoutGrid, Maximize, Wind, ShieldCheck, Sun } from "lucide-react";
+import { LucideIcon, DoorOpen, LayoutGrid, Maximize, Wind, ShieldCheck, Sun, Instagram, Twitter, Facebook, Linkedin, Youtube, Mail, Phone, MessageCircle } from "lucide-react";
+
+export const contactInfo = {
+  email: "shuklaupvccraft@gmail.com",
+  phone: "7011407294",
+  whatsapp: "917011407294",
+  address: "New Delhi, India",
+  socials: {
+    instagram: { url: "https://instagram.com/shuklaupvccrafts", handle: "@shuklaupvccrafts", icon: Instagram },
+    twitter: { url: "https://x.com/shuklaupvccraft", handle: "@shuklaupvccraft", icon: Twitter },
+    facebook: { url: "https://facebook.com/shuklaupvccrafts", handle: "shuklaupvccrafts", icon: Facebook },
+    linkedin: { url: "https://www.linkedin.com/company/shukla-upvc-craft/", handle: "Shukla uPVC Craft", icon: Linkedin },
+    youtube: { url: "https://www.youtube.com/channel/UCkJPq7uI20owfbwkLNFNoZQ", handle: "Shukla uPVC Craft", icon: Youtube },
+  }
+};
 
 export interface Service {
   id: string;

@@ -9,7 +9,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
 import Enquiry from "@/pages/Enquiry";
-import Admin from "@/pages/Admin";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,7 +19,6 @@ function Router() {
       <Switch key={location}>
         <Route path="/" component={Home} />
         <Route path="/enquiry" component={Enquiry} />
-        <Route path="/admin" component={Admin} />
         <Route component={NotFound} />
       </Switch>
     </AnimatePresence>
