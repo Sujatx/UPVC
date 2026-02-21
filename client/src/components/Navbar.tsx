@@ -22,8 +22,8 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Services", href: "/#services" },
-    { name: "Gallery", href: "/#gallery" },
+    { name: "Services", href: "/services" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Enquiry", href: "/enquiry" },
   ];
 
@@ -35,11 +35,10 @@ export default function Navbar() {
         scrolled ? "glass py-2" : "bg-transparent py-6"
       }`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 flex items-center justify-between h-24">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-serif font-bold text-primary flex items-center gap-2 cursor-pointer">
-          <span className="bg-primary text-primary-foreground w-10 h-10 flex items-center justify-center rounded-lg text-lg">S</span>
-          Shukla uPVC
+        <Link href="/" className="text-2xl font-serif font-bold text-primary flex items-center gap-2 cursor-pointer shrink-0">
+          <img src="/logo.png" alt="Shukla uPVC Craft" className="max-h-50 w-auto max-w-sm" />
         </Link>
 
         {/* Desktop Menu */}

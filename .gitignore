@@ -36,5 +36,22 @@ pnpm-debug.log*
 .local/
 vite.config.ts.*
 *.tar.gz
+tmpclaude-*
+.agent/
+attached_assets/
 
+# Editor/System
+.DS_Store
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Project Specific
 GEMINI.md

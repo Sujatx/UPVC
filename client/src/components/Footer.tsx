@@ -12,9 +12,8 @@ export default function Footer() {
           
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="text-2xl font-serif font-bold text-white flex items-center gap-2 cursor-pointer">
-              <span className="bg-primary text-white w-10 h-10 flex items-center justify-center rounded-lg text-lg">S</span>
-              Shukla uPVC
+            <Link href="/" className="text-2xl font-serif font-bold text-white flex items-center gap-2 cursor-pointer inline-block">
+              <img src="/logo.png" alt="Shukla uPVC Craft" className="max-h-30 w-auto max-w-sm" />
             </Link>
             <p className="text-white/60 leading-relaxed">
               Premium uPVC and aluminum solutions for modern spaces. 
@@ -27,8 +26,8 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-6 font-serif">Quick Links</h3>
             <ul className="space-y-3">
               <li><Link href="/" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Home</Link></li>
-              <li><Link href="/#services" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Services</Link></li>
-              <li><Link href="/#gallery" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Gallery</Link></li>
+              <li><Link href="/services" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Services</Link></li>
+              <li><Link href="/gallery" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Gallery</Link></li>
               <li><Link href="/enquiry" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Contact Us</Link></li>
             </ul>
           </div>
@@ -37,17 +36,28 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-6 font-serif">Contact Us</h3>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-white/60">
-                <MapPin className="h-5 w-5 text-primary shrink-0" />
-                <span>{address}</span>
+              <li className="flex items-start gap-3 text-white/60 hover:text-primary transition-colors">
+                <MapPin className="h-5 w-5 text-primary shrink-0 mt-1" />
+                <a
+                  href={`https://maps.google.com/maps?q=${encodeURIComponent(address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  {address}
+                </a>
               </li>
-              <li className="flex items-center gap-3 text-white/60">
+              <li className="flex items-center gap-3 text-white/60 hover:text-primary transition-colors">
                 <Phone className="h-5 w-5 text-primary shrink-0" />
-                <span>+91 {phone}</span>
+                <a href={`tel:+91${phone}`} className="hover:underline">
+                  +91 {phone}
+                </a>
               </li>
-              <li className="flex items-center gap-3 text-white/60">
+              <li className="flex items-center gap-3 text-white/60 hover:text-primary transition-colors">
                 <Mail className="h-5 w-5 text-primary shrink-0" />
-                <span>{email}</span>
+                <a href={`mailto:${email}`} className="hover:underline">
+                  {email}
+                </a>
               </li>
             </ul>
           </div>

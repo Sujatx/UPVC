@@ -7,7 +7,10 @@ import { AnimatePresence } from "framer-motion";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FloatingActionButtons from "@/components/FloatingActionButtons";
 import Home from "@/pages/Home";
+import Services from "@/pages/Services";
+import Gallery from "@/pages/Gallery";
 import Enquiry from "@/pages/Enquiry";
 import NotFound from "@/pages/not-found";
 
@@ -18,6 +21,8 @@ function Router() {
     <AnimatePresence mode="wait">
       <Switch key={location}>
         <Route path="/" component={Home} />
+        <Route path="/services" component={Services} />
+        <Route path="/gallery" component={Gallery} />
         <Route path="/enquiry" component={Enquiry} />
         <Route component={NotFound} />
       </Switch>
@@ -35,6 +40,7 @@ function App() {
             <Router />
           </main>
           <Footer />
+          <FloatingActionButtons />
           <Toaster />
         </div>
       </QueryClientProvider>
@@ -43,3 +49,4 @@ function App() {
 }
 
 export default App;
+
