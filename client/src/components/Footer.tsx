@@ -6,12 +6,12 @@ export default function Footer() {
   const { socials, email, phone, address } = contactInfo;
 
   return (
-    <footer className="bg-foreground text-background py-16">
+    <footer className="bg-foreground text-background py-2">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           
           {/* Brand */}
-          <div className="space-y-4">
+          <div className="space-y-0">
             <Link href="/" className="inline-block cursor-pointer group">
               <img 
                 src="/logo.png" 

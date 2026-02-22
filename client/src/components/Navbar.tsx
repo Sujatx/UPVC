@@ -35,10 +35,10 @@ export default function Navbar() {
         scrolled ? "glass py-2" : "bg-transparent py-6"
       }`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between h-24">
+      <div className="container mx-auto px-4 flex items-center justify-between h-12">
         {/* Logo */}
         <Link href="/" className="text-2xl font-serif font-bold text-primary flex items-center gap-2 cursor-pointer shrink-0">
-          <img src="/logo.png" alt="Shukla uPVC Craft" className="max-h-50 w-auto max-w-sm" />
+          <img src="/logo.png" alt="Shukla uPVC Craft" className="max-h-40 w-auto max-w-sm" />
         </Link>
 
         {/* Desktop Menu */}

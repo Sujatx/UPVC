@@ -13,6 +13,15 @@ import Services from "@/pages/Services";
 import Gallery from "@/pages/Gallery";
 import Enquiry from "@/pages/Enquiry";
 import NotFound from "@/pages/not-found";
+import { useEffect } from "react";
+
+function ScrollToTop() {
+  const [location] = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  return null;
+}
 
 function Router() {
   const [location] = useLocation();
@@ -35,6 +44,7 @@ function App() {
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <QueryClientProvider client={queryClient}>
         <div className="min-h-screen bg-background font-sans text-foreground antialiased selection:bg-primary/20 flex flex-col">
+          <ScrollToTop />
           <Navbar />
           <main className="grow">
             <Router />

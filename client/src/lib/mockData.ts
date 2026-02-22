@@ -4,7 +4,7 @@ export const contactInfo = {
   email: "shuklaupvccraft@gmail.com",
   phone: "7011407294",
   whatsapp: "917011407294",
-  address: "Sector 26, Dwarka, bhartal village, near Heavy zone gym 110077",
+  address: "Sector 26, Dwarka, Bhartal Village, Near Heavy Zone Gym, New Delhi – 110077, India",
   socials: {
     instagram: { url: "https://instagram.com/shuklaupvccrafts", handle: "@shuklaupvccrafts", icon: Instagram },
     twitter: { url: "https://x.com/shuklaupvccraft", handle: "@shuklaupvccraft", icon: Twitter },

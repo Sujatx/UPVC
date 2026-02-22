@@ -13,7 +13,7 @@ export default function Clients() {
     <section className="py-20 border-t border-border bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h3 className="text-2xl font-serif font-bold text-muted-foreground/60 uppercase tracking-widest">
+          <h3 className="text-2xl font-serif font-bold text-primary uppercase tracking-widest">
             Our Clients
           </h3>
         </div>

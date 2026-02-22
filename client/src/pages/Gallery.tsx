@@ -16,9 +16,10 @@ export default function Gallery() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
+      className="bg-gradient-to-br from-primary/5 to-secondary/5 min-h-screen"
     >
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section className="pt-32 pb-16">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -35,15 +36,16 @@ export default function Gallery() {
       </section>
 
       {/* Filter Section */}
-      <section className="py-12 bg-muted/30 sticky top-20 z-30">
+      <section className="py-6 sticky top-12 z-40 transition-all duration-300">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap gap-4 justify-center items-center">
+          <div className="flex flex-nowrap md:flex-wrap gap-3 justify-start md:justify-center items-center overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-hide"
+               style={{ maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)' }}>
             <button
               onClick={() => setSelectedCategory(null)}
-              className={`px-6 py-2 rounded-full font-semibold transition-all ${
+              className={`px-6 py-2 rounded-full font-semibold transition-all whitespace-nowrap shrink-0 ${
                 selectedCategory === null
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-card border border-border text-foreground hover:border-primary/50"
+                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                  : "bg-white/60 dark:bg-white/10 border border-primary/20 text-foreground hover:bg-white/80 dark:hover:bg-white/20"
               }`}
             >
               All Projects
@@ -52,10 +54,10 @@ export default function Gallery() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 rounded-full font-semibold transition-all ${
+                className={`px-6 py-2 rounded-full font-semibold transition-all whitespace-nowrap shrink-0 ${
                   selectedCategory === category
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-card border border-border text-foreground hover:border-primary/50"
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                    : "bg-white/60 dark:bg-white/10 border border-primary/20 text-foreground hover:bg-white/80 dark:hover:bg-white/20"
                 }`}
               >
                 {category}
