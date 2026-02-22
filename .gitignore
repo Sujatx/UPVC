@@ -5,6 +5,7 @@ node_modules/
 
 # Production
 dist/
+build/
 
 # Env & Secrets
 .env
@@ -33,12 +34,24 @@ pnpm-debug.log*
 
 # Local/Temporary
 .local/
-server/public/
 vite.config.ts.*
 *.tar.gz
+tmpclaude-*
+.agent/
+attached_assets/
 
-# Database
-drizzle/
-*.db
-*.sqlite
+# Editor/System
+.DS_Store
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Project Specific
 GEMINI.md

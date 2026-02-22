@@ -1,7 +1,10 @@
 import { Link } from "wouter";
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { contactInfo } from "@/lib/mockData";
+import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Linkedin, Youtube } from "lucide-react";
 
 export default function Footer() {
+  const { socials, email, phone, address } = contactInfo;
+
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
@@ -9,9 +12,12 @@ export default function Footer() {
           
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="text-2xl font-serif font-bold text-white flex items-center gap-2 cursor-pointer">
-              <span className="bg-primary text-white w-10 h-10 flex items-center justify-center rounded-lg text-lg">S</span>
-              Shukla uPVC
+            <Link href="/" className="inline-block cursor-pointer group">
+              <img 
+                src="/logo.png" 
+                alt="Shukla uPVC Craft" 
+                className="max-h-40 w-auto brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity" 
+              />
             </Link>
             <p className="text-white/60 leading-relaxed">
               Premium uPVC and aluminum solutions for modern spaces. 
@@ -24,8 +30,8 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-6 font-serif">Quick Links</h3>
             <ul className="space-y-3">
               <li><Link href="/" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Home</Link></li>
-              <li><Link href="/#services" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Services</Link></li>
-              <li><Link href="/#gallery" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Gallery</Link></li>
+              <li><Link href="/services" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Services</Link></li>
+              <li><Link href="/gallery" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Gallery</Link></li>
               <li><Link href="/enquiry" className="text-white/60 hover:text-primary transition-colors cursor-pointer">Contact Us</Link></li>
             </ul>
           </div>
@@ -34,17 +40,28 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-6 font-serif">Contact Us</h3>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-white/60">
-                <MapPin className="h-5 w-5 text-primary shrink-0" />
-                <span>123 Industrial Area, Phase 2, New Delhi, India 110020</span>
+              <li className="flex items-start gap-3 text-white/60 hover:text-primary transition-colors">
+                <MapPin className="h-5 w-5 text-primary shrink-0 mt-1" />
+                <a
+                  href={`https://maps.google.com/maps?q=${encodeURIComponent(address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  {address}
+                </a>
               </li>
-              <li className="flex items-center gap-3 text-white/60">
+              <li className="flex items-center gap-3 text-white/60 hover:text-primary transition-colors">
                 <Phone className="h-5 w-5 text-primary shrink-0" />
-                <span>+91 98765 43210</span>
+                <a href={`tel:+91${phone}`} className="hover:underline">
+                  +91 {phone}
+                </a>
               </li>
-              <li className="flex items-center gap-3 text-white/60">
+              <li className="flex items-center gap-3 text-white/60 hover:text-primary transition-colors">
                 <Mail className="h-5 w-5 text-primary shrink-0" />
-                <span>info@shuklaupvc.com</span>
+                <a href={`mailto:${email}`} className="hover:underline">
+                  {email}
+                </a>
               </li>
             </ul>
           </div>
@@ -52,15 +69,21 @@ export default function Footer() {
           {/* Newsletter / Social */}
           <div>
             <h3 className="text-lg font-bold mb-6 font-serif">Connect</h3>
-            <div className="flex gap-4 mb-8">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+            <div className="flex flex-wrap gap-4 mb-8">
+              <a href={socials.instagram.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+              <a href={socials.facebook.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+              <a href={socials.twitter.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
                 <Twitter className="h-5 w-5" />
+              </a>
+              <a href={socials.linkedin.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a href={socials.youtube.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Youtube className="h-5 w-5" />
               </a>
             </div>
             <p className="text-sm text-white/40">

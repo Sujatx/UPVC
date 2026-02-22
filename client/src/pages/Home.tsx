@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import Hero from "@/components/Hero";
 import Gallery from "@/components/Gallery";
+import Testimonials from "@/components/Testimonials";
+import Clients from "@/components/Clients";
 import { services } from "@/lib/mockData";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
@@ -31,23 +33,25 @@ const ServicesSection = () => (
             transition={{ delay: index * 0.1 }}
             viewport={{ once: true }}
           >
-            <Card className="glass-card h-full border-none overflow-hidden group hover:border-primary/50 transition-colors">
-              <div className="h-56 overflow-hidden relative">
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10" />
-                <img 
-                  src={service.image} 
-                  alt={service.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-              <CardContent className="p-8 relative">
-                <div className="absolute -top-8 right-6 bg-white dark:bg-card p-4 rounded-xl shadow-xl text-primary transition-transform group-hover:-translate-y-2">
-                  <service.icon className="h-8 w-8" />
+            <Link href="/services" className="h-full block">
+              <Card className="glass-card h-full border-none overflow-hidden group hover:border-primary/50 transition-colors cursor-pointer">
+                <div className="h-56 overflow-hidden relative">
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10" />
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
                 </div>
-                <h3 className="text-2xl font-bold mb-3 font-serif mt-2">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-              </CardContent>
-            </Card>
+                <CardContent className="p-8 relative">
+                  <div className="absolute -top-8 right-6 bg-white dark:bg-card p-4 rounded-xl shadow-xl text-primary transition-transform group-hover:-translate-y-2">
+                    <service.icon className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 font-serif mt-2">{service.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                </CardContent>
+              </Card>
+            </Link>
           </motion.div>
         ))}
       </div>
@@ -66,6 +70,8 @@ export default function Home() {
       <Hero />
       <ServicesSection />
       <Gallery />
+      <Testimonials />
+      <Clients />
       
       {/* CTA Section */}
       <section className="py-32 bg-primary text-primary-foreground relative overflow-hidden">

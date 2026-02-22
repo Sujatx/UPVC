@@ -52,7 +52,7 @@ export default function Hero() {
             </Button>
             
             <Button asChild variant="outline" size="lg" className="rounded-full px-8 text-lg h-12 bg-white/50 backdrop-blur-md border-primary/20 hover:bg-white/80 dark:bg-black/20 dark:hover:bg-black/40">
-              <Link href="/#gallery">
+              <Link href="/gallery">
                 View Gallery
               </Link>
             </Button>

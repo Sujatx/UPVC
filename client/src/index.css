@@ -8,74 +8,74 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  
+
   /* Modern Clean Theme */
   --color-background: hsl(210, 20%, 98%);
   --color-foreground: hsl(215, 25%, 27%);
-  
+
   --color-card: hsl(0, 0%, 100%);
   --color-card-foreground: hsl(215, 25%, 27%);
-  
+
   --color-popover: hsl(0, 0%, 100%);
   --color-popover-foreground: hsl(215, 25%, 27%);
-  
+
   /* Teal / Slate Blue Primary */
   --color-primary: hsl(195, 40%, 40%);
   --color-primary-foreground: hsl(0, 0%, 100%);
-  
+
   /* Soft Blue Secondary */
   --color-secondary: hsl(210, 30%, 90%);
   --color-secondary-foreground: hsl(195, 40%, 40%);
-  
+
   --color-muted: hsl(210, 20%, 90%);
   --color-muted-foreground: hsl(215, 20%, 50%);
-  
+
   /* Gold Accent */
   --color-accent: hsl(35, 50%, 50%);
   --color-accent-foreground: hsl(0, 0%, 100%);
-  
+
   --color-destructive: hsl(0, 84%, 60%);
   --color-destructive-foreground: hsl(0, 0%, 98%);
-  
+
   --color-border: hsl(215, 15%, 90%);
   --color-input: hsl(215, 15%, 90%);
   --color-ring: hsl(195, 40%, 40%);
-  
+
   --color-chart-1: hsl(195, 40%, 40%);
   --color-chart-2: hsl(35, 50%, 50%);
   --color-chart-3: hsl(210, 30%, 90%);
   --color-chart-4: hsl(215, 25%, 27%);
   --color-chart-5: hsl(0, 0%, 50%);
-  
+
   --radius: 0.5rem;
-  
-  --font-sans: 'Manrope', sans-serif;
-  --font-serif: 'Playfair Display', serif;
+
+  --font-sans: "Manrope", sans-serif;
+  --font-serif: "Playfair Display", serif;
 }
 
 /* Dark Mode Overrides */
 .dark {
   --color-background: hsl(215, 25%, 15%);
   --color-foreground: hsl(210, 20%, 98%);
-  
+
   --color-card: hsl(215, 25%, 20%);
   --color-card-foreground: hsl(210, 20%, 98%);
-  
+
   --color-popover: hsl(215, 25%, 20%);
   --color-popover-foreground: hsl(210, 20%, 98%);
-  
+
   --color-primary: hsl(195, 40%, 50%);
   --color-primary-foreground: hsl(0, 0%, 100%);
-  
+
   --color-secondary: hsl(215, 25%, 25%);
   --color-secondary-foreground: hsl(195, 40%, 80%);
-  
+
   --color-muted: hsl(215, 25%, 25%);
   --color-muted-foreground: hsl(215, 20%, 70%);
-  
+
   --color-accent: hsl(35, 50%, 60%);
   --color-accent-foreground: hsl(0, 0%, 100%);
-  
+
   --color-border: hsl(215, 25%, 25%);
   --color-input: hsl(215, 25%, 25%);
 }
@@ -84,13 +84,13 @@
   .glass {
     @apply bg-white/70 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg;
   }
-  
+
   .glass-card {
     @apply bg-white/50 dark:bg-black/30 backdrop-blur-sm border border-white/30 dark:border-white/10 shadow-md hover:shadow-xl transition-all duration-300;
   }
-  
+
   .text-shadow {
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -99,9 +99,17 @@
     @apply border-border;
   }
   body {
-    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/20;
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/20 transition-colors duration-300;
   }
-  h1, h2, h3, h4, h5, h6 {
+  #root {
+    @apply bg-background min-h-screen;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-serif;
   }
 }

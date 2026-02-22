@@ -10,7 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
+import { contactInfo } from "@/lib/mockData";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -23,6 +24,7 @@ const formSchema = z.object({
 export default function Enquiry() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { email, phone, address, whatsapp } = contactInfo;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -37,13 +39,16 @@ export default function Enquiry() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
     
-    console.log(values);
+    // Construct WhatsApp message
+    const text = `Hi, I am ${values.name}. I am interested in ${values.service}. %0A%0ADetails:%0A${values.message}%0A%0AContact: ${values.phone} / ${values.email}`;
+    const whatsappUrl = `https://wa.me/${whatsapp}?text=${text}`;
+    
+    window.open(whatsappUrl, '_blank');
+    
     toast({
-      title: "Enquiry Sent Successfully!",
-      description: "We will contact you shortly to discuss your requirements.",
+      title: "Redirecting to WhatsApp",
+      description: "You can send your enquiry directly via WhatsApp now.",
     });
     
     form.reset();
@@ -73,41 +78,52 @@ export default function Enquiry() {
             </p>
 
             <div className="space-y-6 mb-12">
-              <Card className="glass-card border-none">
-                <CardContent className="flex items-center gap-4 p-6">
-                  <div className="bg-primary/10 p-3 rounded-full text-primary">
-                    <Phone className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">Call Us</h3>
-                    <p className="text-muted-foreground">+91 98765 43210</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <a href={`tel:+91${phone}`} className="block group">
+                <Card className="glass-card border-none transition-all duration-300 group-hover:translate-x-2">
+                  <CardContent className="flex items-center gap-4 p-6">
+                    <div className="bg-primary/10 p-3 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <Phone className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold">Call Us</h3>
+                      <p className="text-muted-foreground">+91 {phone}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
 
-              <Card className="glass-card border-none">
-                <CardContent className="flex items-center gap-4 p-6">
-                  <div className="bg-primary/10 p-3 rounded-full text-primary">
-                    <Mail className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">Email Us</h3>
-                    <p className="text-muted-foreground">enquiry@shuklaupvc.com</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <a href={`mailto:${email}`} className="block group">
+                <Card className="glass-card border-none transition-all duration-300 group-hover:translate-x-2">
+                  <CardContent className="flex items-center gap-4 p-6">
+                    <div className="bg-primary/10 p-3 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <Mail className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold">Email Us</h3>
+                      <p className="text-muted-foreground">{email}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
 
-              <Card className="glass-card border-none">
-                <CardContent className="flex items-center gap-4 p-6">
-                  <div className="bg-primary/10 p-3 rounded-full text-primary">
-                    <MapPin className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">Visit Us</h3>
-                    <p className="text-muted-foreground">New Delhi, India</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <a 
+                href={`https://maps.google.com/maps?q=${encodeURIComponent(address)}`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="block group"
+              >
+                <Card className="glass-card border-none transition-all duration-300 group-hover:translate-x-2">
+                  <CardContent className="flex items-center gap-4 p-6">
+                    <div className="bg-primary/10 p-3 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <MapPin className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold">Visit Us</h3>
+                      <p className="text-muted-foreground">{address}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
             </div>
           </motion.div>
 
@@ -120,7 +136,7 @@ export default function Enquiry() {
             <Card className="glass border-white/20 shadow-xl">
               <CardHeader>
                 <CardTitle className="text-2xl font-serif">Send an Enquiry</CardTitle>
-                <CardDescription>Fill out the form below and get a free quote.</CardDescription>
+                <CardDescription>Fill out the form below to contact us via WhatsApp.</CardDescription>
               </CardHeader>
               <CardContent>
                 <Form {...form}>
@@ -211,15 +227,15 @@ export default function Enquiry() {
                       )}
                     />
 
-                    <Button type="submit" className="w-full rounded-full h-12 text-lg" disabled={isSubmitting}>
+                    <Button type="submit" className="w-full rounded-full h-12 text-lg bg-[#25D366] hover:bg-[#128C7E] text-white" disabled={isSubmitting}>
                       {isSubmitting ? (
                         <span className="flex items-center gap-2">
                           <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
-                          Sending...
+                          Opening WhatsApp...
                         </span>
                       ) : (
                         <span className="flex items-center gap-2">
-                          Send Enquiry <Send className="h-4 w-4" />
+                          Send via WhatsApp <MessageCircle className="h-5 w-5" />
                         </span>
                       )}
                     </Button>
