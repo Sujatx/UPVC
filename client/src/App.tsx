@@ -32,7 +32,7 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <QueryClientProvider client={queryClient}>
         <div className="min-h-screen bg-background font-sans text-foreground antialiased selection:bg-primary/20 flex flex-col">
           <Navbar />
@@ -49,4 +49,3 @@ function App() {
 }
 
 export default App;
-

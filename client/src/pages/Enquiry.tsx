@@ -78,41 +78,52 @@ export default function Enquiry() {
             </p>
 
             <div className="space-y-6 mb-12">
-              <Card className="glass-card border-none">
-                <CardContent className="flex items-center gap-4 p-6">
-                  <div className="bg-primary/10 p-3 rounded-full text-primary">
-                    <Phone className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">Call Us</h3>
-                    <p className="text-muted-foreground">+91 {phone}</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <a href={`tel:+91${phone}`} className="block group">
+                <Card className="glass-card border-none transition-all duration-300 group-hover:translate-x-2">
+                  <CardContent className="flex items-center gap-4 p-6">
+                    <div className="bg-primary/10 p-3 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <Phone className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold">Call Us</h3>
+                      <p className="text-muted-foreground">+91 {phone}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
 
-              <Card className="glass-card border-none">
-                <CardContent className="flex items-center gap-4 p-6">
-                  <div className="bg-primary/10 p-3 rounded-full text-primary">
-                    <Mail className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">Email Us</h3>
-                    <p className="text-muted-foreground">{email}</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <a href={`mailto:${email}`} className="block group">
+                <Card className="glass-card border-none transition-all duration-300 group-hover:translate-x-2">
+                  <CardContent className="flex items-center gap-4 p-6">
+                    <div className="bg-primary/10 p-3 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <Mail className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold">Email Us</h3>
+                      <p className="text-muted-foreground">{email}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
 
-              <Card className="glass-card border-none">
-                <CardContent className="flex items-center gap-4 p-6">
-                  <div className="bg-primary/10 p-3 rounded-full text-primary">
-                    <MapPin className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">Visit Us</h3>
-                    <p className="text-muted-foreground">{address}</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <a 
+                href={`https://maps.google.com/maps?q=${encodeURIComponent(address)}`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="block group"
+              >
+                <Card className="glass-card border-none transition-all duration-300 group-hover:translate-x-2">
+                  <CardContent className="flex items-center gap-4 p-6">
+                    <div className="bg-primary/10 p-3 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <MapPin className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold">Visit Us</h3>
+                      <p className="text-muted-foreground">{address}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
             </div>
           </motion.div>
 

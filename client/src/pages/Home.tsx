@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import Hero from "@/components/Hero";
 import Gallery from "@/components/Gallery";
+import Testimonials from "@/components/Testimonials";
+import Clients from "@/components/Clients";
 import { services } from "@/lib/mockData";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
@@ -68,6 +70,8 @@ export default function Home() {
       <Hero />
       <ServicesSection />
       <Gallery />
+      <Testimonials />
+      <Clients />
       
       {/* CTA Section */}
       <section className="py-32 bg-primary text-primary-foreground relative overflow-hidden">

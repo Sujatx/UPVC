@@ -12,8 +12,12 @@ export default function Footer() {
           
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="text-2xl font-serif font-bold text-white flex items-center gap-2 cursor-pointer inline-block">
-              <img src="/logo.png" alt="Shukla uPVC Craft" className="max-h-30 w-auto max-w-sm" />
+            <Link href="/" className="inline-block cursor-pointer group">
+              <img 
+                src="/logo.png" 
+                alt="Shukla uPVC Craft" 
+                className="max-h-40 w-auto brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity" 
+              />
             </Link>
             <p className="text-white/60 leading-relaxed">
               Premium uPVC and aluminum solutions for modern spaces. 

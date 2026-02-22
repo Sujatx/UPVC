@@ -42,7 +42,7 @@ export default function FloatingActionButtons() {
         <span className="hidden group-hover:inline-block text-sm font-medium pr-2 bg-green-500 px-4 py-2 rounded-full">
           WhatsApp
         </span>
-        <MessageCircle className="h-6 w-6" />
+        <img src="/whatsapp.png" alt="WhatsApp" className="h-7 w-7 object-contain" />
       </motion.a>
 
       {/* Call Button */}
