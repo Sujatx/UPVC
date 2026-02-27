@@ -9,7 +9,7 @@ export default function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/hero-window.png"
+          src="/hero-window.webp"
           alt="Modern Interior"
           className="w-full h-full object-cover"
         />

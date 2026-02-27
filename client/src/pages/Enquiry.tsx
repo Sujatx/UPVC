@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, MessageCircle, CheckCircle } from "lucide-react";
 import { contactInfo } from "@/lib/mockData";
 
 const formSchema = z.object({
@@ -24,7 +24,13 @@ const formSchema = z.object({
 export default function Enquiry() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const { email, phone, address, whatsapp } = contactInfo;
+
+  useEffect(() => {
+    document.title = "Get a Free Quote | Shukla uPVC Craft";
+    return () => { document.title = "Shukla uPVC Craft | Modern Windows & Doors"; };
+  }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,20 +45,20 @@ export default function Enquiry() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-    
-    // Construct WhatsApp message
+
     const text = `Hi, I am ${values.name}. I am interested in ${values.service}. %0A%0ADetails:%0A${values.message}%0A%0AContact: ${values.phone} / ${values.email}`;
     const whatsappUrl = `https://wa.me/${whatsapp}?text=${text}`;
-    
-    window.open(whatsappUrl, '_blank');
-    
+
+    window.open(whatsappUrl, "_blank");
+
     toast({
       title: "Redirecting to WhatsApp",
       description: "You can send your enquiry directly via WhatsApp now.",
     });
-    
+
     form.reset();
     setIsSubmitting(false);
+    setSubmitted(true);
   }
 
   return (
@@ -64,7 +70,7 @@ export default function Enquiry() {
     >
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          
+
           {/* Contact Info Side */}
           <motion.div
             initial={{ x: -50, opacity: 0 }}
@@ -73,7 +79,7 @@ export default function Enquiry() {
           >
             <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">Let's Discuss Your Project</h1>
             <p className="text-lg text-muted-foreground mb-8">
-              Whether you need a single window replacement or a full commercial installation, 
+              Whether you need a single window replacement or a full commercial installation,
               our team is ready to help you find the perfect solution.
             </p>
 
@@ -106,10 +112,10 @@ export default function Enquiry() {
                 </Card>
               </a>
 
-              <a 
-                href={`https://maps.google.com/maps?q=${encodeURIComponent(address)}`} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href={`https://maps.google.com/maps?q=${encodeURIComponent(address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block group"
               >
                 <Card className="glass-card border-none transition-all duration-300 group-hover:translate-x-2">
@@ -139,108 +145,125 @@ export default function Enquiry() {
                 <CardDescription>Fill out the form below to contact us via WhatsApp.</CardDescription>
               </CardHeader>
               <CardContent>
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Full Name</FormLabel>
-                          <FormControl>
-                            <Input placeholder="John Doe" {...field} className="bg-white/50 backdrop-blur-sm" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                              <Input placeholder="john@example.com" {...field} className="bg-white/50 backdrop-blur-sm" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Phone</FormLabel>
-                            <FormControl>
-                              <Input placeholder="+91 9876543210" {...field} className="bg-white/50 backdrop-blur-sm" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-
-                    <FormField
-                      control={form.control}
-                      name="service"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Service Interested In</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="bg-white/50 backdrop-blur-sm">
-                                <SelectValue placeholder="Select a service" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="windows">uPVC Windows</SelectItem>
-                              <SelectItem value="doors">Aluminum Doors</SelectItem>
-                              <SelectItem value="partitions">Office Partitions</SelectItem>
-                              <SelectItem value="glass">Custom Glass Work</SelectItem>
-                              <SelectItem value="other">Other</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Message</FormLabel>
-                          <FormControl>
-                            <Textarea 
-                              placeholder="Tell us about your project requirements..." 
-                              className="min-h-[120px] bg-white/50 backdrop-blur-sm" 
-                              {...field} 
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <Button type="submit" className="w-full rounded-full h-12 text-lg bg-[#25D366] hover:bg-[#128C7E] text-white" disabled={isSubmitting}>
-                      {isSubmitting ? (
-                        <span className="flex items-center gap-2">
-                          <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
-                          Opening WhatsApp...
-                        </span>
-                      ) : (
-                        <span className="flex items-center gap-2">
-                          Send via WhatsApp <MessageCircle className="h-5 w-5" />
-                        </span>
-                      )}
+                {submitted ? (
+                  <div className="flex flex-col items-center text-center py-8 gap-4">
+                    <CheckCircle className="h-16 w-16 text-green-500" />
+                    <h3 className="text-2xl font-bold font-serif">Enquiry Sent!</h3>
+                    <p className="text-muted-foreground max-w-xs">
+                      We've received your enquiry. We'll get back to you shortly via WhatsApp or phone.
+                    </p>
+                    <Button
+                      variant="outline"
+                      className="mt-2 rounded-full"
+                      onClick={() => setSubmitted(false)}
+                    >
+                      Send Another Enquiry
                     </Button>
-                  </form>
-                </Form>
+                  </div>
+                ) : (
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Full Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="John Doe" {...field} className="bg-white/50 backdrop-blur-sm" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email</FormLabel>
+                              <FormControl>
+                                <Input placeholder="john@example.com" {...field} className="bg-white/50 backdrop-blur-sm" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Phone</FormLabel>
+                              <FormControl>
+                                <Input placeholder="+91 9876543210" {...field} className="bg-white/50 backdrop-blur-sm" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <FormField
+                        control={form.control}
+                        name="service"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Service Interested In</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger className="bg-white/50 backdrop-blur-sm">
+                                  <SelectValue placeholder="Select a service" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="windows">uPVC Windows</SelectItem>
+                                <SelectItem value="doors">Aluminum Doors</SelectItem>
+                                <SelectItem value="partitions">Office Partitions</SelectItem>
+                                <SelectItem value="glass">Custom Glass Work</SelectItem>
+                                <SelectItem value="other">Other</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="message"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Message</FormLabel>
+                            <FormControl>
+                              <Textarea
+                                placeholder="Tell us about your project requirements..."
+                                className="min-h-[120px] bg-white/50 backdrop-blur-sm"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <Button type="submit" className="w-full rounded-full h-12 text-lg bg-[#25D366] hover:bg-[#128C7E] text-white" disabled={isSubmitting}>
+                        {isSubmitting ? (
+                          <span className="flex items-center gap-2">
+                            <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+                            Opening WhatsApp...
+                          </span>
+                        ) : (
+                          <span className="flex items-center gap-2">
+                            Send via WhatsApp <MessageCircle className="h-5 w-5" />
+                          </span>
+                        )}
+                      </Button>
+                    </form>
+                  </Form>
+                )}
               </CardContent>
             </Card>
           </motion.div>

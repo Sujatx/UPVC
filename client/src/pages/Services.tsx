@@ -2,8 +2,14 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { services } from "@/lib/mockData";
+import { useEffect } from "react";
 
 export default function Services() {
+  useEffect(() => {
+    document.title = "Our Services | Shukla uPVC Craft";
+    return () => { document.title = "Shukla uPVC Craft | Modern Windows & Doors"; };
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -31,7 +37,7 @@ export default function Services() {
       {/* Services Grid */}
       <section className="py-24">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
@@ -41,45 +47,48 @@ export default function Services() {
                 viewport={{ once: true }}
                 className="group"
               >
-                <Card className="glass-card h-full border-none overflow-hidden hover:border-primary/50 transition-colors">
-                  {/* Image */}
-                  <div className="h-72 overflow-hidden relative">
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10" />
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
+                <Card className="glass-card border-none overflow-hidden hover:border-primary/50 transition-colors">
+                  <div className="flex flex-col md:flex-row">
+                    {/* Image */}
+                    <div className="h-56 md:h-auto md:w-2/5 flex-shrink-0 overflow-hidden relative">
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10" />
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    </div>
 
-                  {/* Content */}
-                  <CardContent className="p-10">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="bg-primary text-primary-foreground p-4 rounded-xl">
-                        <service.icon className="h-8 w-8" />
+                    {/* Content */}
+                    <CardContent className="p-6 flex flex-col justify-center">
+                      <div className="flex items-start gap-3 mb-4">
+                        <div className="bg-primary text-primary-foreground p-3 rounded-xl flex-shrink-0">
+                          <service.icon className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-2xl font-bold font-serif">{service.title}</h3>
                       </div>
-                      <h3 className="text-3xl font-bold font-serif">{service.title}</h3>
-                    </div>
-                    <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                      {service.description}
-                    </p>
+                      <p className="text-muted-foreground text-base leading-relaxed mb-4">
+                        {service.description}
+                      </p>
 
-                    {/* Service Details */}
-                    <div className="space-y-3 mb-8 text-sm text-muted-foreground">
-                      <p>✓ Custom design and installation</p>
-                      <p>✓ Premium quality materials</p>
-                      <p>✓ Expert craftsmanship</p>
-                      <p>✓ Timely project delivery</p>
-                      <p>✓ Warranty & after-sales support</p>
-                    </div>
+                      {/* Service Details */}
+                      <div className="space-y-2 mb-4 text-sm text-muted-foreground">
+                        <p>✓ Custom design and installation</p>
+                        <p>✓ Premium quality materials</p>
+                        <p>✓ Expert craftsmanship</p>
+                        <p>✓ Timely project delivery</p>
+                        <p>✓ Warranty & after-sales support</p>
+                      </div>
 
-                    <Link
-                      href="/enquiry"
-                      className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all"
-                    >
-                      Get Quote
-                    </Link>
-                  </CardContent>
+                      <Link
+                        href="/enquiry"
+                        className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all w-fit"
+                      >
+                        Get Quote
+                      </Link>
+                    </CardContent>
+                  </div>
                 </Card>
               </motion.div>
             ))}

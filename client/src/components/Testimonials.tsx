@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { testimonials } from "@/lib/mockData";
 
@@ -32,9 +32,14 @@ export default function Testimonials() {
                   <div className="flex justify-center mb-8">
                     <Quote className="h-24 w-24 text-primary/10 rotate-180" />
                   </div>
-                  <p className="text-xl md:text-2xl font-light italic leading-relaxed text-foreground/80 mb-8">
+                  <p className="text-xl md:text-2xl font-light italic leading-relaxed text-foreground/80 mb-6">
                     "{testimonial.text}"
                   </p>
+                  <div className="flex justify-center gap-1 mb-6">
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+                    ))}
+                  </div>
                   <div className="font-serif">
                     <span className="block text-xl font-bold text-primary">
                       - {testimonial.name}

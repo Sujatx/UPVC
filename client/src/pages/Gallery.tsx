@@ -1,9 +1,14 @@
 import { motion } from "framer-motion";
 import { galleryItems } from "@/lib/mockData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  useEffect(() => {
+    document.title = "Project Gallery | Shukla uPVC Craft";
+    return () => { document.title = "Shukla uPVC Craft | Modern Windows & Doors"; };
+  }, []);
 
   const categories = Array.from(new Set(galleryItems.map((item) => item.category)));
   const filteredItems = selectedCategory
@@ -88,6 +93,7 @@ export default function Gallery() {
                 <img
                   src={item.image}
                   alt={item.title}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
