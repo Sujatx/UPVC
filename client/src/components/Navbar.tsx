@@ -36,7 +36,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 flex items-center justify-between h-12">
         {/* Logo */}
         <Link href="/" className="text-2xl font-serif font-bold text-primary flex items-center gap-2 cursor-pointer shrink-0">
-          <img src="/logo.webp" alt="Shukla uPVC Craft" width={80} height={48} className="max-h-12 w-auto" />
+          <img src="/logo.png" alt="Shukla uPVC Craft" width={80} height={48} className="max-h-32 :max-h-12 w-auto" />
         </Link>
 
         {/* Desktop Menu */}
