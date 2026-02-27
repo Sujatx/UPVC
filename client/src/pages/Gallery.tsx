@@ -1,9 +1,12 @@
 import { m } from "framer-motion";
 import { galleryItems } from "@/lib/mockData";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<typeof galleryItems[0] | null>(null);
 
   useEffect(() => {
     document.title = "Project Gallery | Shukla uPVC Craft";
@@ -20,6 +23,26 @@ export default function Gallery() {
   const filteredItems = selectedCategory
     ? galleryItems.filter((item) => item.category === selectedCategory)
     : galleryItems;
+
+  const selectedIndex = filteredItems.findIndex((i) => i.id === selectedItem?.id);
+
+  const navigate = useCallback((dir: 1 | -1) => {
+    setSelectedItem((cur) => {
+      const idx = filteredItems.findIndex((i) => i.id === cur?.id);
+      if (idx === -1) return cur;
+      return filteredItems[(idx + dir + filteredItems.length) % filteredItems.length];
+    });
+  }, [filteredItems]);
+
+  useEffect(() => {
+    if (!selectedItem) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") navigate(1);
+      if (e.key === "ArrowLeft") navigate(-1);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [selectedItem, navigate]);
 
   return (
     <m.div
@@ -95,6 +118,7 @@ export default function Gallery() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ delay: index * 0.05 }}
+                onClick={() => setSelectedItem(item)}
                 className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer h-72"
               >
                 {/* Image */}
@@ -133,6 +157,46 @@ export default function Gallery() {
           )}
         </div>
       </section>
+
+      {/* Lightbox Dialog */}
+      <Dialog open={selectedItem !== null} onOpenChange={(open) => { if (!open) setSelectedItem(null); }}>
+        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-transparent border-none shadow-none">
+          {selectedItem && (
+            <div className="space-y-3">
+              <div className="relative h-[60vh] flex items-center justify-center bg-black/90 rounded-lg overflow-hidden">
+                <img
+                  src={selectedItem.image}
+                  alt={selectedItem.title}
+                  className="max-w-full max-h-full object-contain"
+                />
+                <button
+                  onClick={() => navigate(-1)}
+                  aria-label="Previous image"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+                <button
+                  onClick={() => navigate(1)}
+                  aria-label="Next image"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+              </div>
+              <div className="bg-card p-5 rounded-lg flex items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-2xl font-serif font-bold mb-1">{selectedItem.title}</h2>
+                  <p className="text-primary font-semibold">{selectedItem.category}</p>
+                </div>
+                <span className="text-muted-foreground text-sm shrink-0">
+                  {selectedIndex + 1} / {filteredItems.length}
+                </span>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Stats Section */}
       <section className="py-24 bg-muted/30">

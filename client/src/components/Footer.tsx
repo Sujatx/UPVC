@@ -14,11 +14,11 @@ export default function Footer() {
           <div className="space-y-0">
             <Link href="/" className="inline-block cursor-pointer group">
               <img
-                src="/logo.webp"
+                src="/logo.png"
                 alt="Shukla uPVC Craft"
                 width={80}
                 height={64}
-                className="max-h-16 w-auto brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity"
+                className="max-h-32 w-auto brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity"
               />
             </Link>
             <p className="text-white/60 leading-relaxed">
