@@ -1,7 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
+import { useEffect } from "react";
 
 export default function NotFound() {
+  useEffect(() => {
+    document.title = "Page Not Found | Shukla uPVC Craft";
+    return () => { document.title = "Shukla uPVC Craft | Modern Windows & Doors"; };
+  }, []);
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
       <Card className="w-full max-w-md mx-4">

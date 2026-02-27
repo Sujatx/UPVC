@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon, Phone } from "lucide-react";
-import { useTheme } from "next-themes";
+import { m, AnimatePresence } from "framer-motion";
+import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
-  const { theme, setTheme } = useTheme();
 
   // Handle scroll effect
   useEffect(() => {
@@ -28,17 +26,17 @@ export default function Navbar() {
   ];
 
   return (
-    <motion.nav
+    <m.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? "glass py-2" : "bg-transparent py-6"
       }`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between h-24">
+      <div className="container mx-auto px-4 flex items-center justify-between h-12">
         {/* Logo */}
         <Link href="/" className="text-2xl font-serif font-bold text-primary flex items-center gap-2 cursor-pointer shrink-0">
-          <img src="/logo.png" alt="Shukla uPVC Craft" className="max-h-50 w-auto max-w-sm" />
+          <img src="/logo.webp" alt="Shukla uPVC Craft" width={80} height={48} className="max-h-12 w-auto" />
         </Link>
 
         {/* Desktop Menu */}
@@ -54,17 +52,6 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-full hover:bg-primary/10"
-          >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
 
           <Button asChild className="rounded-full px-6 font-serif">
             <Link href="/enquiry">
@@ -75,18 +62,9 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <div className="flex items-center gap-4 md:hidden">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-full"
-          >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          </Button>
-          
           <button
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
             className="p-2 text-foreground focus:outline-none"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -97,7 +75,7 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -122,9 +100,9 @@ export default function Navbar() {
                 </Link>
               </Button>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </m.nav>
   );
 }

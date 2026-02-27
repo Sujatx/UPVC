@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { MessageCircle, Phone } from "lucide-react";
 import { contactInfo } from "@/lib/mockData";
 
@@ -23,14 +23,14 @@ export default function FloatingActionButtons() {
   };
 
   return (
-    <motion.div
+    <m.div
       className="fixed bottom-6 right-6 z-40 flex flex-col gap-4 items-end"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
       {/* WhatsApp Button */}
-      <motion.a
+      <m.a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
@@ -42,11 +42,11 @@ export default function FloatingActionButtons() {
         <span className="hidden group-hover:inline-block text-sm font-medium pr-2 bg-green-500 px-4 py-2 rounded-full">
           WhatsApp
         </span>
-        <img src="/whatsapp.png" alt="WhatsApp" className="h-7 w-7 object-contain" />
-      </motion.a>
+        <img src="/whatsapp.webp" alt="WhatsApp" width={28} height={28} className="h-7 w-7 object-contain" />
+      </m.a>
 
       {/* Call Button */}
-      <motion.a
+      <m.a
         href={phoneUrl}
         variants={buttonVariants}
         whileHover={{ scale: 1.1 }}
@@ -57,7 +57,7 @@ export default function FloatingActionButtons() {
           Call
         </span>
         <Phone className="h-6 w-6" />
-      </motion.a>
-    </motion.div>
+      </m.a>
+    </m.div>
   );
 }

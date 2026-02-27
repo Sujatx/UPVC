@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { Quote } from "lucide-react";
-import { motion } from "framer-motion";
+import { Quote, Star } from "lucide-react";
+import { m } from "framer-motion";
 import { testimonials } from "@/lib/mockData";
 
 export default function Testimonials() {
@@ -14,14 +14,14 @@ export default function Testimonials() {
     <section className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <motion.h2 
+          <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-serif font-bold"
           >
             What People Say About Us
-          </motion.h2>
+          </m.h2>
         </div>
 
         <div className="embla overflow-hidden" ref={emblaRef}>
@@ -32,9 +32,14 @@ export default function Testimonials() {
                   <div className="flex justify-center mb-8">
                     <Quote className="h-24 w-24 text-primary/10 rotate-180" />
                   </div>
-                  <p className="text-xl md:text-2xl font-light italic leading-relaxed text-foreground/80 mb-8">
+                  <p className="text-xl md:text-2xl font-light italic leading-relaxed text-foreground/80 mb-6">
                     "{testimonial.text}"
                   </p>
+                  <div className="flex justify-center gap-1 mb-6">
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+                    ))}
+                  </div>
                   <div className="font-serif">
                     <span className="block text-xl font-bold text-primary">
                       - {testimonial.name}
