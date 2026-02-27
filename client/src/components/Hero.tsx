@@ -13,7 +13,7 @@ export default function Hero() {
           alt="Modern Interior"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent dark:from-black/90 dark:via-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10 pt-20">
@@ -29,7 +29,7 @@ export default function Hero() {
             transition={{ delay: 0.2 }}
             className="flex items-center gap-2 mb-4"
           >
-            <span className="px-3 py-1 rounded-full bg-accent/20 text-accent-foreground dark:text-accent font-semibold text-sm backdrop-blur-sm border border-accent/20">
+            <span className="px-3 py-1 rounded-full bg-accent/20 text-accent-foreground font-semibold text-sm backdrop-blur-sm border border-accent/20">
               #1 uPVC Manufacturer
             </span>
           </motion.div>
@@ -51,7 +51,7 @@ export default function Hero() {
               </Link>
             </Button>
             
-            <Button asChild variant="outline" size="lg" className="rounded-full px-8 text-lg h-12 bg-white/50 backdrop-blur-md border-primary/20 hover:bg-white/80 dark:bg-black/20 dark:hover:bg-black/40">
+            <Button asChild variant="outline" size="lg" className="rounded-full px-8 text-lg h-12 bg-white/50 backdrop-blur-md border-primary/20 hover:bg-white/80">
               <Link href="/gallery">
                 View Gallery
               </Link>

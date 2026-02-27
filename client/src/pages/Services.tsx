@@ -37,7 +37,7 @@ export default function Services() {
       {/* Services Grid */}
       <section className="py-24">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
@@ -50,7 +50,7 @@ export default function Services() {
                 <Card className="glass-card border-none overflow-hidden hover:border-primary/50 transition-colors">
                   <div className="flex flex-col md:flex-row">
                     {/* Image */}
-                    <div className="h-56 md:h-auto md:w-2/5 flex-shrink-0 overflow-hidden relative">
+                    <div className="h-44 md:h-auto md:w-2/5 flex-shrink-0 overflow-hidden relative">
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10" />
                       <img
                         src={service.image}

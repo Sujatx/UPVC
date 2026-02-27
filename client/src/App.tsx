@@ -2,7 +2,6 @@ import { Switch, Route, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
-import { ThemeProvider } from "next-themes";
 import { AnimatePresence } from "framer-motion";
 
 import Navbar from "@/components/Navbar";
@@ -41,8 +40,7 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
         <div className="min-h-screen bg-background font-sans text-foreground antialiased selection:bg-primary/20 flex flex-col">
           <ScrollToTop />
           <Navbar />
@@ -54,7 +52,6 @@ function App() {
           <Toaster />
         </div>
       </QueryClientProvider>
-    </ThemeProvider>
   );
 }
 

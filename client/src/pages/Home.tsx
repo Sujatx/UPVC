@@ -47,7 +47,7 @@ const ServicesSection = () => (
                   />
                 </div>
                 <CardContent className="p-8 relative">
-                  <div className="absolute -top-8 right-6 bg-white dark:bg-card p-4 rounded-xl shadow-xl text-primary transition-transform group-hover:-translate-y-2">
+                  <div className="absolute -top-8 right-6 bg-white p-4 rounded-xl shadow-xl text-primary transition-transform group-hover:-translate-y-2">
                     <service.icon className="h-8 w-8" />
                   </div>
                   <h3 className="text-2xl font-bold mb-3 font-serif mt-2">{service.title}</h3>
