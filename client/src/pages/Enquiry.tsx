@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -29,7 +29,13 @@ export default function Enquiry() {
 
   useEffect(() => {
     document.title = "Get a Free Quote | Shukla uPVC Craft";
-    return () => { document.title = "Shukla uPVC Craft | Modern Windows & Doors"; };
+    const meta = document.querySelector('meta[name="description"]');
+    const prev = meta?.getAttribute("content") ?? "";
+    meta?.setAttribute("content", "Get a free quote for uPVC windows, aluminum doors, and glass work. Contact Shukla uPVC Craft via WhatsApp, phone, or email.");
+    return () => {
+      document.title = "Shukla uPVC Craft | Modern Windows & Doors";
+      meta?.setAttribute("content", prev);
+    };
   }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -62,7 +68,7 @@ export default function Enquiry() {
   }
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -72,7 +78,7 @@ export default function Enquiry() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
           {/* Contact Info Side */}
-          <motion.div
+          <m.div
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -131,10 +137,10 @@ export default function Enquiry() {
                 </Card>
               </a>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Form Side */}
-          <motion.div
+          <m.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
@@ -266,9 +272,9 @@ export default function Enquiry() {
                 )}
               </CardContent>
             </Card>
-          </motion.div>
+          </m.div>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }

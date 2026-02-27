@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { galleryItems } from "@/lib/mockData";
 import { useState, useEffect } from "react";
 
@@ -7,7 +7,13 @@ export default function Gallery() {
 
   useEffect(() => {
     document.title = "Project Gallery | Shukla uPVC Craft";
-    return () => { document.title = "Shukla uPVC Craft | Modern Windows & Doors"; };
+    const meta = document.querySelector('meta[name="description"]');
+    const prev = meta?.getAttribute("content") ?? "";
+    meta?.setAttribute("content", "Browse our portfolio of completed uPVC windows, aluminum doors, and glass installations. See the quality of Shukla uPVC Craft's work.");
+    return () => {
+      document.title = "Shukla uPVC Craft | Modern Windows & Doors";
+      meta?.setAttribute("content", prev);
+    };
   }, []);
 
   const categories = Array.from(new Set(galleryItems.map((item) => item.category)));
@@ -16,7 +22,7 @@ export default function Gallery() {
     : galleryItems;
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -26,7 +32,7 @@ export default function Gallery() {
       {/* Hero Section */}
       <section className="pt-32 pb-16">
         <div className="container mx-auto px-4 text-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -36,7 +42,7 @@ export default function Gallery() {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Explore our portfolio of premium aluminum and uPVC installations across residential and commercial spaces.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -47,10 +53,11 @@ export default function Gallery() {
                style={{ maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)' }}>
             <button
               onClick={() => setSelectedCategory(null)}
+              aria-pressed={selectedCategory === null}
               className={`px-6 py-2 rounded-full font-semibold transition-all whitespace-nowrap shrink-0 ${
                 selectedCategory === null
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                  : "bg-white/60 dark:bg-white/10 border border-primary/20 text-foreground hover:bg-white/80 dark:hover:bg-white/20"
+                  : "bg-white/60 border border-primary/20 text-foreground hover:bg-white/80"
               }`}
             >
               All Projects
@@ -59,10 +66,11 @@ export default function Gallery() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
+                aria-pressed={selectedCategory === category}
                 className={`px-6 py-2 rounded-full font-semibold transition-all whitespace-nowrap shrink-0 ${
                   selectedCategory === category
                     ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                    : "bg-white/60 dark:bg-white/10 border border-primary/20 text-foreground hover:bg-white/80 dark:hover:bg-white/20"
+                    : "bg-white/60 border border-primary/20 text-foreground hover:bg-white/80"
                 }`}
               >
                 {category}
@@ -75,12 +83,12 @@ export default function Gallery() {
       {/* Gallery Grid */}
       <section className="py-24">
         <div className="container mx-auto px-4">
-          <motion.div
+          <m.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {filteredItems.map((item, index) => (
-              <motion.div
+              <m.div
                 key={item.id}
                 layout
                 initial={{ opacity: 0, y: 20 }}
@@ -114,9 +122,9 @@ export default function Gallery() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
 
           {filteredItems.length === 0 && (
             <div className="text-center py-12">
@@ -135,7 +143,7 @@ export default function Gallery() {
               { number: "15+", label: "Years Experience" },
               { number: "500+", label: "Happy Customers" },
             ].map((stat, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -146,7 +154,7 @@ export default function Gallery() {
                   {stat.number}
                 </h3>
                 <p className="text-lg text-muted-foreground">{stat.label}</p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -156,7 +164,7 @@ export default function Gallery() {
       <section className="py-32 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80" />
         <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -173,9 +181,9 @@ export default function Gallery() {
             >
               Get Free Consultation
             </a>
-          </motion.div>
+          </m.div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 }

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { services } from "@/lib/mockData";
@@ -7,11 +7,17 @@ import { useEffect } from "react";
 export default function Services() {
   useEffect(() => {
     document.title = "Our Services | Shukla uPVC Craft";
-    return () => { document.title = "Shukla uPVC Craft | Modern Windows & Doors"; };
+    const meta = document.querySelector('meta[name="description"]');
+    const prev = meta?.getAttribute("content") ?? "";
+    meta?.setAttribute("content", "Explore uPVC windows, aluminum doors, office partitions, and custom glass work by Shukla uPVC Craft. Premium quality with expert installation.");
+    return () => {
+      document.title = "Shukla uPVC Craft | Modern Windows & Doors";
+      meta?.setAttribute("content", prev);
+    };
   }, []);
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -20,7 +26,7 @@ export default function Services() {
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="container mx-auto px-4 text-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -30,7 +36,7 @@ export default function Services() {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Discover our comprehensive range of premium aluminum and uPVC solutions, crafted with precision and dedication to elevate your spaces.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -39,7 +45,7 @@ export default function Services() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {services.map((service, index) => (
-              <motion.div
+              <m.div
                 key={service.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +96,7 @@ export default function Services() {
                     </CardContent>
                   </div>
                 </Card>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -133,7 +139,7 @@ export default function Services() {
                 description: "We provide comprehensive warranty and dedicated after-sales service.",
               },
             ].map((item, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +149,7 @@ export default function Services() {
               >
                 <h3 className="text-xl font-bold font-serif mb-4">{item.title}</h3>
                 <p className="text-muted-foreground">{item.description}</p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -153,7 +159,7 @@ export default function Services() {
       <section className="py-32 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80" />
         <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -168,9 +174,9 @@ export default function Services() {
             >
               Get Free Consultation
             </Link>
-          </motion.div>
+          </m.div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 }

@@ -13,10 +13,12 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-0">
             <Link href="/" className="inline-block cursor-pointer group">
-              <img 
-                src="/logo.png" 
-                alt="Shukla uPVC Craft" 
-                className="max-h-40 w-auto brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity" 
+              <img
+                src="/logo.webp"
+                alt="Shukla uPVC Craft"
+                width={80}
+                height={64}
+                className="max-h-16 w-auto brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity"
               />
             </Link>
             <p className="text-white/60 leading-relaxed">
@@ -70,20 +72,20 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-6 font-serif">Connect</h3>
             <div className="flex flex-wrap gap-4 mb-8">
-              <a href={socials.instagram.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
-                <Instagram className="h-5 w-5" />
+              <a href={socials.instagram.url} target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Instagram className="h-5 w-5" aria-hidden="true" />
               </a>
-              <a href={socials.facebook.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
-                <Facebook className="h-5 w-5" />
+              <a href={socials.facebook.url} target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Facebook className="h-5 w-5" aria-hidden="true" />
               </a>
-              <a href={socials.twitter.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
-                <Twitter className="h-5 w-5" />
+              <a href={socials.twitter.url} target="_blank" rel="noopener noreferrer" aria-label="Follow us on Twitter" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Twitter className="h-5 w-5" aria-hidden="true" />
               </a>
-              <a href={socials.linkedin.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
-                <Linkedin className="h-5 w-5" />
+              <a href={socials.linkedin.url} target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Linkedin className="h-5 w-5" aria-hidden="true" />
               </a>
-              <a href={socials.youtube.url} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
-                <Youtube className="h-5 w-5" />
+              <a href={socials.youtube.url} target="_blank" rel="noopener noreferrer" aria-label="Subscribe on YouTube" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Youtube className="h-5 w-5" aria-hidden="true" />
               </a>
             </div>
             <p className="text-sm text-white/40">

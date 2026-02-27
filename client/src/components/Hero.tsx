@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -11,19 +11,20 @@ export default function Hero() {
         <img
           src="/hero-window.webp"
           alt="Modern Interior"
+          fetchPriority="high"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10 pt-20">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-2xl"
         >
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -32,7 +33,7 @@ export default function Hero() {
             <span className="px-3 py-1 rounded-full bg-accent/20 text-accent-foreground font-semibold text-sm backdrop-blur-sm border border-accent/20">
               #1 uPVC Manufacturer
             </span>
-          </motion.div>
+          </m.div>
 
           <h1 className="text-5xl md:text-7xl font-serif font-bold text-foreground mb-6 leading-tight text-shadow">
             Crafting Vision <br />
@@ -64,7 +65,7 @@ export default function Hero() {
               "Sound Proof",
               "Energy Efficient"
             ].map((feature, i) => (
-              <motion.div
+              <m.div
                 key={feature}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -73,14 +74,14 @@ export default function Hero() {
               >
                 <CheckCircle className="h-5 w-5 text-primary" />
                 {feature}
-              </motion.div>
+              </m.div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </div>
       
       {/* Decorative glass element */}
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.8, duration: 1 }}

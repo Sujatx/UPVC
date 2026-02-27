@@ -3,7 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { galleryItems } from "@/lib/mockData";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -79,7 +79,7 @@ export default function Gallery() {
   return (
     <section id="gallery" className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -97,26 +97,28 @@ export default function Gallery() {
               variant="outline"
               size="icon"
               onClick={scrollPrev}
+              aria-label="Previous project"
               className="rounded-full w-12 h-12 border-primary/20 hover:bg-primary/10"
             >
-              <ChevronLeft className="h-6 w-6" />
+              <ChevronLeft className="h-6 w-6" aria-hidden="true" />
             </Button>
             <Button
               variant="outline"
               size="icon"
               onClick={scrollNext}
+              aria-label="Next project"
               className="rounded-full w-12 h-12 border-primary/20 hover:bg-primary/10"
             >
-              <ChevronRight className="h-6 w-6" />
+              <ChevronRight className="h-6 w-6" aria-hidden="true" />
             </Button>
           </div>
-        </motion.div>
+        </m.div>
 
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex -ml-4">
             {galleryItems.map((item) => (
               <div key={item.id} className="flex-[0_0_85%] md:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0 pl-4">
-                <motion.div whileHover={!isMobile ? { y: -10 } : {}} className="h-full">
+                <m.div whileHover={!isMobile ? { y: -10 } : {}} className="h-full">
                   <Dialog>
                     <DialogTrigger asChild>
                       <Card className="border-none shadow-none h-full bg-transparent cursor-pointer">
@@ -151,6 +153,7 @@ export default function Gallery() {
                         <img
                           src={item.image}
                           alt={item.title}
+                          loading="lazy"
                           className="w-full h-auto rounded-lg shadow-2xl"
                         />
                         <div className="bg-card p-6 rounded-lg">
@@ -164,7 +167,7 @@ export default function Gallery() {
                       </div>
                     </DialogContent>
                   </Dialog>
-                </motion.div>
+                </m.div>
               </div>
             ))}
           </div>

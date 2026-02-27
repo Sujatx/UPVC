@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Quote, Star } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { testimonials } from "@/lib/mockData";
 
 export default function Testimonials() {
@@ -14,14 +14,14 @@ export default function Testimonials() {
     <section className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <motion.h2 
+          <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-serif font-bold"
           >
             What People Say About Us
-          </motion.h2>
+          </m.h2>
         </div>
 
         <div className="embla overflow-hidden" ref={emblaRef}>

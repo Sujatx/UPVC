@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Hero from "@/components/Hero";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
@@ -13,7 +13,7 @@ const ServicesSection = () => (
   <section id="services" className="py-24 bg-muted/30">
     <div className="container mx-auto px-4">
       <div className="text-center mb-16">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -23,12 +23,12 @@ const ServicesSection = () => (
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             We specialize in premium aluminum and uPVC solutions, customized to elevate your architectural vision.
           </p>
-        </motion.div>
+        </m.div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service, index) => (
-          <motion.div
+          <m.div
             key={service.id}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +55,7 @@ const ServicesSection = () => (
                 </CardContent>
               </Card>
             </Link>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </div>
@@ -66,7 +66,7 @@ const ProcessSection = () => (
   <section className="py-24">
     <div className="container mx-auto px-4">
       <div className="text-center mb-16">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -76,7 +76,7 @@ const ProcessSection = () => (
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             From first contact to final installation, we make the process smooth and stress-free.
           </p>
-        </motion.div>
+        </m.div>
       </div>
 
       <div className="relative">
@@ -90,7 +90,7 @@ const ProcessSection = () => (
             { step: "03", icon: Wrench, title: "Expert Installation", desc: "Our skilled team handles the full installation with precision." },
             { step: "04", icon: ShieldCheck, title: "After-Sales Support", desc: "Warranty included with dedicated support long after the job is done." },
           ].map((item, index) => (
-            <motion.div
+            <m.div
               key={item.step}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -108,7 +108,7 @@ const ProcessSection = () => (
               </div>
               <h3 className="text-xl font-bold font-serif mb-2">{item.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>
@@ -119,11 +119,17 @@ const ProcessSection = () => (
 export default function Home() {
   useEffect(() => {
     document.title = "Shukla uPVC Craft | Premium uPVC Windows & Doors, Delhi";
-    return () => { document.title = "Shukla uPVC Craft | Modern Windows & Doors"; };
+    const meta = document.querySelector('meta[name="description"]');
+    const prev = meta?.getAttribute("content") ?? "";
+    meta?.setAttribute("content", "Shukla uPVC Craft offers premium uPVC windows, aluminum doors, and glass interiors in Delhi. Get a free consultation today.");
+    return () => {
+      document.title = "Shukla uPVC Craft | Modern Windows & Doors";
+      meta?.setAttribute("content", prev);
+    };
   }, []);
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -142,7 +148,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80" />
 
         <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -157,9 +163,9 @@ export default function Home() {
             >
               Get Free Consultation
             </Link>
-          </motion.div>
+          </m.div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 }

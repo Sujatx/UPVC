@@ -42,7 +42,7 @@ export const services: Service[] = [
     title: "Aluminum Doors",
     description: "Sleek, robust aluminum doors that combine security with elegance.",
     icon: DoorOpen,
-    image: "/doors/door-detail.png"
+    image: "/doors/door-detail.webp"
   },
   {
     id: "partitions",
@@ -65,7 +65,7 @@ export const galleryItems: GalleryItem[] = [
   { id: "2", title: "Modern Sliding Doors", category: "Doors", image: "/work-2.webp" },
   { id: "3", title: "Corporate Office", category: "Commercial", image: "/work-3.webp" },
   { id: "4", title: "Kitchen Renovation", category: "Windows", image: "/work-4.webp" },
-  { id: "5", title: "Aluminum Entrance", category: "Doors", image: "/doors/door-detail.png" },
+  { id: "5", title: "Aluminum Entrance", category: "Doors", image: "/doors/door-detail.webp" },
   { id: "6", title: "Glass Railing", category: "Glass", image: "/glass-bg.webp" },
   { id: "door-1", title: "UPVC Door Design 1", category: "Doors", image: "/doors/door-1.webp" },
   { id: "door-5", title: "UPVC Door Design 2", category: "Doors", image: "/doors/door-5.webp" },

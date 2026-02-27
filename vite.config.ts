@@ -25,6 +25,16 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom"],
+          "vendor-motion": ["framer-motion"],
+          "vendor-ui": ["@radix-ui/react-slot"],
+          "vendor-carousel": ["embla-carousel-react", "embla-carousel-autoplay"],
+        },
+      },
+    },
   },
   server: {
     host: "0.0.0.0",
