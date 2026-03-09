@@ -4,6 +4,7 @@ import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { AnimatePresence, LazyMotion, domAnimation } from "framer-motion";
 import { lazy, Suspense, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -54,6 +55,7 @@ function App() {
           <Footer />
           <FloatingActionButtons />
           <Toaster />
+          <Analytics />
         </div>
       </LazyMotion>
     </QueryClientProvider>
